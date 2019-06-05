@@ -1,11 +1,16 @@
+package com.crudstruts;
+
 import org.apache.struts2.dispatcher.filter.StrutsPrepareAndExecuteFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+
 import javax.servlet.Filter;
 import java.util.Arrays;
 
+@ComponentScan
 @SpringBootApplication
 public class Application {
     @Bean
@@ -16,6 +21,7 @@ public class Application {
         frb.setUrlPatterns(Arrays.asList("/*"));
         return frb;
     }
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
