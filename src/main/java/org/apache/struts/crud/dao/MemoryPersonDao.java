@@ -3,8 +3,7 @@ package org.apache.struts.crud.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.apache.struts.crud.model.Person;
 
 /**
@@ -14,7 +13,7 @@ import org.apache.struts.crud.model.Person;
  * @author antonio sanchez
  */
 public class MemoryPersonDao implements PersonDao {
-    private static final Logger LOG = LogManager.getLogger(MemoryPersonDao.class.getName());
+    //private static final Logger LOG = LogManager.getLogger(MemoryPersonDao.class.getName());
 
     private final static List<Person> persons;
 
@@ -31,7 +30,7 @@ public class MemoryPersonDao implements PersonDao {
                 try {
                     return (Person) p.clone();
                 } catch (CloneNotSupportedException ex) {
-                    LOG.error("Unexpected exception cloning Person");
+                    System.out.println("Unexpected exception cloning Person");
                 }
             }
         }

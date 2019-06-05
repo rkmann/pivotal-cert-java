@@ -2,8 +2,7 @@ package org.apache.struts.crud.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.apache.struts.crud.model.Country;
 import org.apache.struts.crud.model.Person;
 import org.apache.struts.crud.service.DefaultPersonService;
@@ -17,7 +16,7 @@ import org.apache.struts.crud.service.PersonService;
  */
 public class PersonAction extends ActionSupport implements Preparable {
     
-    private static final Logger LOG = LogManager.getLogger(PersonAction.class.getName());
+    //private static final Logger LOG = LogManager.getLogger(PersonAction.class.getName());
     private PersonService personService = new DefaultPersonService();
     private Person person;
     private Person[] persons;
@@ -32,11 +31,11 @@ public class PersonAction extends ActionSupport implements Preparable {
         sports = personService.getSports();
         countries = personService.getCountries();
         genders = personService.getGenders();
-        LOG.info("Prepared support data for Person entity.");        
+        System.out.println("Prepared support data for Person entity.");
         
         if (person != null && person.getPersonId() != null) {
             person = personService.getPerson(person.getPersonId());
-            LOG.info("Preparing actual data for Person: " + person);
+            System.out.println("Preparing actual data for Person: " + person);
         }
     }
 
@@ -45,7 +44,7 @@ public class PersonAction extends ActionSupport implements Preparable {
      */
     public String list() {
         persons = personService.getAllPersons();
-        LOG.info("Listing persons");
+        System.out.println("Listing persons");
         return SUCCESS;
     }
     
@@ -55,10 +54,10 @@ public class PersonAction extends ActionSupport implements Preparable {
     public String save() {
         if (person.getPersonId() == null) {
             personService.insertPerson(person);
-            LOG.info("Created new Person: " + person);
+            System.out.println("Created new Person: " + person);
         } else {
             personService.updatePerson(person);
-            LOG.info("Updated Person: " + person);
+            System.out.println("Updated Person: " + person);
         }
         return SUCCESS;
     }
@@ -69,7 +68,7 @@ public class PersonAction extends ActionSupport implements Preparable {
      */
     public String delete() {
         personService.deletePerson(person.getPersonId());
-        LOG.info("Deleted Person: " + person);
+        System.out.println("Deleted Person: " + person);
         return SUCCESS;
     }
     
